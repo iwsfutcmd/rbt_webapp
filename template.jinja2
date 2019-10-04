@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Rule-based Transliterator Tester</title>
+    <meta name="description" content="Rule-based Transliterator Tester" />
+
+    <link rel="stylesheet" href="static/styles.css" />
+  </head>
+
+  <body onkeydown="handleKeypress(event)">
+    <h1>Rule-based Transliterator Tester</h1>
+    <form
+      action="/"
+      id="rbt-webapp"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div id="rules-container">
+        <div class="container">
+          <label>
+            Load rule file:
+            <input type="file" name="rulefile" onchange="this.form.submit()" />
+          </label>
+          <button
+            onclick="event.preventDefault(); download('ruleset.rbt', rulebox.value)"
+            type="button"
+          >
+            Save rule file
+          </button>
+        </div>
+        <textarea id="rulebox" name="rules" wrap="off">{{ rules }}</textarea>
+        <label>
+          Register with ID:
+          <input type="text" id="rulesetid" name="rulesetid"/>
+          <button type="button" onclick="registerRuleset();">Register</button>
+        </label>
+        <label>
+          Load existing ruleset:
+          <select onchange="setRules();" id="ruleset-select" name="rulesetname">
+            <option></option>
+            {% for rbt in rbts %}
+            <option {{ "selected" if rbt == rulesetname }}>{{ rbt }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </div>
+      <div id="testdata">
+        <label>
+          Load test data:
+          <input type="file" name="testdata" onchange="this.form.submit()" />
+        </label>
+        <div class="container">
+          <label>
+            <input type="checkbox" name="reverse" {{"checked" if reverse}}/>
+            Reverse?
+          </label>
+          <input type="submit" value="Test" />
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Test data</th>
+              <th>Expected</th>
+              <th>Output</th>
+            </tr>
+          </thead>
+          <tbody id="test-table">
+            {% for teststring, expected, output in testdata %}
+            <tr>
+              <td>
+                <input
+                  type="text"
+                  value="{{ teststring }}"
+                  name="teststrings"
+                />
+              </td>
+              <td>
+                <input type="text" value="{{ expected }}" name="expecteds" />
+              </td>
+              <td class="{{'different' if expected != output }}">
+                {{ output }}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <button id="addrow" onclick="event.preventDefault(); addRow()">
+          +
+        </button>
+      </div>
+    </form>
+    <script src="static/scripts.js"></script>
+    {% if error %}
+    <script>
+      alert("Rule error:\n{{error}}");
+    </script>
+    {% endif %}
+  </body>
+</html>

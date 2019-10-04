@@ -1,0 +1,39 @@
+#rbt-webapp {
+  display: flex;
+  flex-direction: row;
+}
+
+#rules-container {
+  display: flex;
+  flex-direction: column;
+  resize: horizontal;
+  margin: 4px;
+}
+
+#testdata {
+  display: flex;
+  flex-direction: column;
+  margin: 4px;
+}
+
+#rulebox {
+  block-size: 75vh;
+}
+
+#testdata > table {
+  inline-size: 100%;
+}
+
+.different {
+  background-color: yellow;
+}
+
+#addrow {
+  align-self: start;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
