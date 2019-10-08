@@ -67,4 +67,4 @@ To run on a different IP or port, run:
 - [ ] Fix the test data/expected textboxes so they don't screw up when empty.
 - [ ] Allow registering reverse rulesets.
 - [ ] Make rule syntax error alert less incomprehensible.
-
+- [ ] Allow multiline test input.
