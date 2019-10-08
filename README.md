@@ -61,10 +61,13 @@ To run on a different IP or port, run:
 
 * Once registered, a ruleset will now show up in the "Load existing ruleset" dropdown.
   * Note: When a preexisting ruleset is selected, the ruleset that ends up in the ruleset textbox is derived from the compiled version of the ruleset. As such, it will lose many details. Do not rely on this as a method to save your rulesets!
-  
+
+* To register a reverse version of the ruleset, check the "Reverse?" box next to the "Register" button.
+  * Note: The ID will not automatically be reversed, and will be registered as typed.
+
 # TODO
 
 - [ ] Fix the test data/expected textboxes so they don't screw up when empty.
-- [ ] Allow registering reverse rulesets.
+- [X] Allow registering reverse rulesets.
 - [ ] Make rule syntax error alert less incomprehensible.
 - [ ] Allow multiline test input.
