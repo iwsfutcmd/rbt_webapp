@@ -60,8 +60,9 @@ async def rules(request):
 @app.post("/register")
 async def register(request):
     ruleset_id = request.form["id"][0]
+    reverse = request.form["reverse"][0] == "true"
     try:
-        registered_ids = register_ruleset(ruleset_id, request.form["rules"][0])
+        registered_ids = register_ruleset(ruleset_id, request.form["rules"][0], reverse)
         return json({"ids": registered_ids}, status=201)
     except ValueError:
         return json({"ids": []}, status=400)

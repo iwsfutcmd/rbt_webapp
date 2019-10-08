@@ -39,6 +39,7 @@ const registerRuleset = () => {
     let formData = new FormData();
     formData.append("id", rulesetId.value);
     formData.append("rules", rulebox.value);
+    formData.append("reverse", document.getElementById("regreverse").checked);
     fetch("/register", {method: "POST", body: formData}).then(r => {
         if (!r.ok) {
             alert("Ruleset ID already exists.")

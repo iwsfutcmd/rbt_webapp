@@ -26,9 +26,10 @@ def process_testdata(testdata):
     return tuple(map(list, zip(*r)))
 
 
-def register_ruleset(ruleset_id, rules):
+def register_ruleset(ruleset_id, rules, reverse=False):
     if ruleset_id in icu.Transliterator.getAvailableIDs():
         raise ValueError("Ruleset ID already registered")
-    ruleset_cache.append(icu.Transliterator.createFromRules(ruleset_id, rules))
+    di = icu.UTransDirection.REVERSE if reverse else icu.UTransDirection.FORWARD
+    ruleset_cache.append(icu.Transliterator.createFromRules(ruleset_id, rules, di))
     icu.Transliterator.registerInstance(ruleset_cache[-1])
     return ruleset_id
