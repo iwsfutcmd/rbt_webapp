@@ -30,7 +30,7 @@ To run on a different IP or port, run:
   * To add more test strings, press the "+" button below the input box.
   * Note: Do not leave any of the test data or expected boxes empty, or bad things happen. By default, they are filled with a dash (-)
 
-* Press the "Test" button. Output strings are displayed under "Output".
+* Press the "Test" button or press `F5`. Output strings are displayed under "Output".
   * If the output does not match the expected result, it will be highlighted in yellow.
   * If the ruleset contains syntax errors, an alert will pop up with the error returned by ICU.
 
