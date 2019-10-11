@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+
 import sys
+import os
 from sanic import Sanic
 from sanic.response import json, html, text
 from jinja2 import Template
@@ -6,6 +9,7 @@ from utils import *
 
 app = Sanic()
 
+template = Template(open("template.jinja2").read())
 
 @app.route("/", methods=["GET", "POST"])
 async def test(request):
@@ -41,7 +45,6 @@ async def test(request):
         outputs = [""] * len(teststrings)
         error = e
     testdata = zip(teststrings, expecteds, outputs)
-    template = Template(open("template.jinja2").read())
     return html(template.render(
         rbts=rbts,
         rules=rules,
@@ -74,6 +77,10 @@ if __name__ == "__main__":
         host = sys.argv[1]
         port = int(sys.argv[2])
     except (IndexError, ValueError) as e:
-        host = "0.0.0.0"
-        port = 8000
+        try:
+            host = "127.0.0.1"
+            port = os.environ["PORT"]
+        except KeyError:
+            host = "0.0.0.0"
+            port = 8000
     app.run(host=host, port=port)
