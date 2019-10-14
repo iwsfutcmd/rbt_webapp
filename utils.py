@@ -4,7 +4,7 @@ import csv
 ruleset_cache = []
 
 def available_rbts():
-    return sorted(icu.Transliterator.getAvailableIDs())
+    return sorted(icu.Transliterator.getAvailableIDs(), key=str.lower)
 
 
 def get_rules(ruleset_name):
