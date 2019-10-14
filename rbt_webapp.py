@@ -55,11 +55,13 @@ async def test(request):
     ))
 
 
+@app.route("/rbt_webapp/rules")
 @app.route("//rules")
 async def rules(request):
     rules = get_rules(request.args["id"][0])
     return json(rules)
 
+@app.post("/rbt_webapp/register")
 @app.post("//register")
 async def register(request):
     ruleset_id = request.form["id"][0]
@@ -70,7 +72,8 @@ async def register(request):
     except ValueError:
         return json({"ids": []}, status=400)
 
-app.static("static", "./static")
+app.static("/rbt_webapp/static", "./static")
+app.static("//static", "./static")
 
 if __name__ == "__main__":
     try:
