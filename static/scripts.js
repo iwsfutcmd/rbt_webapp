@@ -5,7 +5,7 @@ const rulesetId = document.getElementById("rulesetid");
 
 const setRules = () => {
     let id = rulesetSelect.value;
-    fetch("/rules?id=" + id).then(r => r.json().then(rules => rulebox.value = rules));
+    fetch("rbt_webapp/rules?id=" + id).then(r => r.json().then(rules => rulebox.value = rules));
 }
 const addRow = () => {
     let row = testTable.insertRow();
@@ -40,7 +40,7 @@ const registerRuleset = () => {
     formData.append("id", rulesetId.value);
     formData.append("rules", rulebox.value);
     formData.append("reverse", document.getElementById("regreverse").checked);
-    fetch("/register", {method: "POST", body: formData}).then(r => {
+    fetch("rbt_webapp/register", {method: "POST", body: formData}).then(r => {
         if (!r.ok) {
             alert("Ruleset ID already exists.")
         } else {

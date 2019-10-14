@@ -7,13 +7,13 @@
     <title>Rule-based Transliterator Tester</title>
     <meta name="description" content="Rule-based Transliterator Tester" />
 
-    <link rel="stylesheet" href="static/styles.css" />
+    <link rel="stylesheet" href="rbt_webapp/static/styles.css" />
   </head>
 
   <body onkeydown="handleKeypress(event)">
     <h1>Rule-based Transliterator Tester</h1>
     <form
-      action="/"
+      action=""
       id="rbt-webapp"
       method="post"
       enctype="multipart/form-data"
@@ -94,7 +94,7 @@
         </button>
       </div>
     </form>
-    <script src="static/scripts.js"></script>
+    <script src="rbt_webapp/static/scripts.js"></script>
     {% if error %}
     <script>
       alert("Rule error:\n{{error}}");

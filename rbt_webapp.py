@@ -11,7 +11,7 @@ app = Sanic()
 
 template = Template(open("template.jinja2").read())
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("//", methods=["GET", "POST"])
 async def test(request):
     rbts = available_rbts()
     try:
@@ -55,12 +55,12 @@ async def test(request):
     ))
 
 
-@app.route("/rules")
+@app.route("//rules")
 async def rules(request):
     rules = get_rules(request.args["id"][0])
     return json(rules)
 
-@app.post("/register")
+@app.post("//register")
 async def register(request):
     ruleset_id = request.form["id"][0]
     reverse = request.form["reverse"][0] == "true"
@@ -70,7 +70,7 @@ async def register(request):
     except ValueError:
         return json({"ids": []}, status=400)
 
-app.static("/static", "./static")
+app.static("static", "./static")
 
 if __name__ == "__main__":
     try:
